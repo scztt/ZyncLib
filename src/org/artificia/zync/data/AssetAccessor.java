@@ -3,20 +3,21 @@ package org.artificia.zync.data;
 import java.util.Vector;
 
 import org.artificia.zync.Asset;
-import org.artificia.zync.AssetDatabaseChange;
 import org.artificia.zync.AssetMetadata;
+import org.artificia.zync.data.AssetDatabaseChange;
 
 public interface AssetAccessor
 {
 	public void applyChange(AssetDatabaseChange inAssetChange);
 	
-	public void insertAsset(Asset inAsset);
-	public void insertAssets(Vector<Asset> inAssets);
+	public void insertRecord(Asset inAsset);
+	public void insertRecords(Vector<Asset> inAssets);
 	
-	public void updateAsset(Asset inAsset);
-	public void deleteAsset(int inAssetID);
+	public void updateRecord(Asset inAsset);
+	public void deleteRecord(int inAssetID);
 	
-	public Asset getAssetByID(int inAssetID);
-	public QueryIterator<Asset> getAssets();
+	public Asset getById(int inId);
+	public QueryIterator<Asset> getAll();
 	public QueryIterator<Asset> matchUsingMetadata(AssetMetadata inMetadata);
+
 }

@@ -54,7 +54,8 @@ public class SqlQueryFactory {
 	
 	public static String Asset_TitleArtistAlbumQuery()
 	{
-		String str = "select * from asset "
+		String str = "select * from asset ";
+		return str;
 	}
 
 	public static String AssetRef_QueryByUniqueId(String inUniqueId) {

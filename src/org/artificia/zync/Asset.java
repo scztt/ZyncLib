@@ -1,5 +1,6 @@
 package org.artificia.zync;
 
+import java.sql.Time;
 import java.util.Date;
 
 public class Asset {
@@ -10,7 +11,7 @@ public class Asset {
 	Asset()
 	{
 		lastUpdate = new Time(new Date().getTime());
-		metadata = new AssetMetadata();
+		//metadata = new AssetMetadata();
 	}
 	
 	public String toString()

@@ -8,14 +8,12 @@ import java.util.Vector;
 import java.util.logging.Level;
 
 import org.artificia.zync.Asset;
-import org.artificia.zync.FileSystemSettings;
-import org.artificia.zync.ZDBLogger;
 import org.artificia.zync.data.AssetAccessor;
 import org.artificia.zync.data.AssetRefAccessor;
 import org.artificia.zync.data.MetadataAccessor;
 import org.artificia.zync.data.ZDBFactory;
 
-
+/*
 public class SQLiteZDBFactory implements ZDBFactory
 {
 	private Connection dbConnection;
@@ -81,3 +79,4 @@ public class SQLiteZDBFactory implements ZDBFactory
 	}
 	
 }
+*/

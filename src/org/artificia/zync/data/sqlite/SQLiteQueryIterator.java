@@ -5,11 +5,12 @@ import java.sql.ResultSet;
 import org.artificia.zync.AssetRef;
 import org.artificia.zync.FileSystem;
 import org.artificia.zync.data.QueryIterator;
+/*
 
 public class SQLiteQueryIterator implements QueryIterator
 {
 	ResultSet resultSet;
-	FileSystem.AssetRefFactory refFactory;
+	//FileSystem.AssetRefFactory refFactory;
 	
 	SQLiteQueryIterator(ResultSet inResultSet, FileSystem.AssetRefFactory inRefFactory)
 	{
@@ -59,3 +60,4 @@ public class SQLiteQueryIterator implements QueryIterator
 		}
 	}
 }
+*/

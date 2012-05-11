@@ -3,59 +3,60 @@ package org.artificia.zync.data.sqlite;
 import java.util.Vector;
 
 import org.artificia.zync.Asset;
-import org.artificia.zync.AssetDatabaseChange;
 import org.artificia.zync.AssetMetadata;
 import org.artificia.zync.AssetRef;
+import org.artificia.zync.data.Metadata;
 import org.artificia.zync.data.MetadataAccessor;
+import org.artificia.zync.data.MetadataDatabaseChange;
 import org.artificia.zync.data.QueryIterator;
 
 public class SQLiteMetadataAccessor implements MetadataAccessor
 {
 
 	@Override
-	public void applyChange(AssetDatabaseChange inAssetChange)
+	public void applyChange(MetadataDatabaseChange inAssetChange)
 	{
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void insertAsset(Asset inAsset)
+	public void insertRecord(Metadata inAsset)
 	{
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void insertAssets(Vector<Asset> inAssets)
+	public void insertRecords(Vector<Metadata> inAssets)
 	{
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void updateAsset(Asset inAsset)
+	public void updateRecord(Metadata inAsset)
 	{
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void deleteAsset(Asset inAsset)
+	public void deleteRecord(Metadata inAsset)
 	{
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public QueryIterator<AssetRef> getAssets()
+	public Asset getById(int inId)
 	{
 		// TODO Auto-generated method stub
 		return null;
 	}
 
 	@Override
-	public QueryIterator<AssetRef> matchUsingMetadata(AssetMetadata inMetadata)
+	public QueryIterator<Metadata> getAll()
 	{
 		// TODO Auto-generated method stub
 		return null;
