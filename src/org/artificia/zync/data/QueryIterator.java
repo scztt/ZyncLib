@@ -1,7 +1,23 @@
 package org.artificia.zync.data;
 
-public interface QueryIterator<T>
+import java.util.Iterator;
+
+public abstract class QueryIterator<T> implements Iterator, Iterable 
 {
-	public boolean hasNext();
-	public T next();
+	public interface TypeConvertor<Q, T>
+	{
+		public T convert(Q inQ);
+	}
+	
+	public abstract boolean hasNext();
+	public abstract T next();
+	
+	public void remove() 
+	{
+	}
+	
+	public Iterator iterator()
+	{
+		return this;
+	}
 }

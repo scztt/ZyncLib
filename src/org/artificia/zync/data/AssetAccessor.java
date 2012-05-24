@@ -8,16 +8,16 @@ import org.artificia.zync.data.AssetDatabaseChange;
 
 public interface AssetAccessor
 {
-	public void applyChange(AssetDatabaseChange inAssetChange);
+	public Boolean applyChange(AssetDatabaseChange inAssetChange);
 	
-	public void insertRecord(Asset inAsset);
-	public void insertRecords(Vector<Asset> inAssets);
+	public Boolean insertRecord(Asset inAsset);
+	public Boolean insertRecords(Vector<Asset> inAssets);
 	
-	public void updateRecord(Asset inAsset);
-	public void deleteRecord(int inAssetID);
+	public Boolean updateRecord(Asset inAsset);
+	public Boolean deleteRecord(int inAssetID);
 	
-	public Asset getById(int inId);
-	public QueryIterator<Asset> getAll();
-	public QueryIterator<Asset> matchUsingMetadata(AssetMetadata inMetadata);
+	public Asset getById(int inId) throws AccessException;
+	public QueryIterator<Asset> getAll() throws AccessException;
+	public QueryIterator<Asset> matchUsingMetadata(AssetMetadata inMetadata) throws AccessException;
 
 }

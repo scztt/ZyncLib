@@ -22,10 +22,12 @@ public class ZDBLogger extends Logger
 			logger = new ZDBLogger();
 	        // Create a new handler that uses the simple formatter
 	        try {
-	            FileHandler fh = new FileHandler("~/Desktop/zdb.log");
+	            FileHandler fh = new FileHandler("/Users/Scott/Desktop/zdb.log");
 	            fh.setFormatter(new SimpleFormatter());
 	            logger.addHandler(fh);
+	            logger.setLevel(Level.ALL);
 	        } catch (IOException e) {
+	        	assert false : e.toString();
 	        }
 		}
 		

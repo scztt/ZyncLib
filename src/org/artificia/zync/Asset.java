@@ -11,7 +11,19 @@ public class Asset {
 	public Asset()
 	{
 		lastUpdate = new Time(new Date().getTime());
+		uniqueID = "test";
 		//metadata = new AssetMetadata();
+	}
+	
+	public Boolean equals(Asset equalTo)
+	{
+		Boolean result = (this.metadata == equalTo.metadata);
+		
+		if ((this.uniqueID != null) && (equalTo.uniqueID != null))
+			result = result && (this.uniqueID.equals(equalTo.uniqueID));
+		
+		return result;
+				
 	}
 	
 	public String toString()

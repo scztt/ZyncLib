@@ -35,15 +35,10 @@ public class SQLiteZDBFactory implements ZDBFactory
 	    Class.forName("org.sqlite.JDBC");
 
 	    // create a database connection
-		dbConnection = DriverManager.getConnection("jdbc:sqlite:" + (String)settings.get("LibraryDatabasePath"));
-		
-		Statement statement = dbConnection.createStatement();
-		statement.setQueryTimeout(30);  // set timeout to 30 sec.
-
-		statement.executeUpdate(SqlQueryFactory.Asset_CreateTable());
+		dbConnection = DriverManager.getConnection("jdbc:sqlite:" + (String)settings.get("LibraryDatabasePath"));		
 	}
 
-	public void disconnectDatabse()
+	public void disconnectDatabase()
 	{
 		try 
 		{

@@ -4,17 +4,16 @@ import java.sql.ResultSet;
 
 import org.artificia.zync.AssetRef;
 import org.artificia.zync.data.QueryIterator;
-/*
 
-public class SQLiteQueryIterator implements QueryIterator
+public class SQLiteQueryIterator<T> extends QueryIterator
 {
 	ResultSet resultSet;
-	//FileSystem.AssetRefFactory refFactory;
+	QueryIterator.TypeConvertor<ResultSet, T> convertor;
 	
-	SQLiteQueryIterator(ResultSet inResultSet, FileSystem.AssetRefFactory inRefFactory)
+	SQLiteQueryIterator(ResultSet inResultSet, QueryIterator.TypeConvertor<ResultSet, T> inConvertor)
 	{
 		resultSet = inResultSet;
-		refFactory = inRefFactory;
+		convertor = inConvertor;
 		
 		try 
 		{
@@ -43,13 +42,13 @@ public class SQLiteQueryIterator implements QueryIterator
 	}
 
 	@Override
-	public AssetRef next() {
+	public T next() {
 		try 
 		{
-			AssetRef ref = refFactory.createRef(); 			
-			SqlQueryFactory.AssetRef_FromResultSet(resultSet, ref);
+			T object = null;
+			object = convertor.convert(resultSet);
 			resultSet.next();
-			return ref;
+			return object;
 		}
 		catch (Exception e)
 		{
@@ -59,5 +58,3 @@ public class SQLiteQueryIterator implements QueryIterator
 		}
 	}
 }
-*/import org.artificia.zync.fs.FileSystem;
-
