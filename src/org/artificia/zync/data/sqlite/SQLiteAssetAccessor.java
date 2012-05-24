@@ -11,13 +11,15 @@ import org.artificia.zync.data.QueryIterator;
 
 public class SQLiteAssetAccessor implements AssetAccessor
 {
+	Connection db;
+	
 	private String insertQuery = "insert into asset (uniqueID, lastUpdate, id_metadata) VALUES (?, ?, ?)";
 	private String updateQuery = "UPDATE asset SET " + "lastUpdate=?, "
 			+ "id_metadata=?, " + "WHERE uniqueID = ?";
 
-	public SQLiteAssetAccessor(Connection dbConnection)
+	public SQLiteAssetAccessor(Connection inConnection)
 	{
-		// TODO Auto-generated constructor stub
+		db = inConnection;
 	}
 
 	@Override

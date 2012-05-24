@@ -33,11 +33,11 @@ public class SqlQueryFactory {
 	// Asset
 	public static String Asset_CreateTable()
 	{
-		String str = "create table asset (" 
-				+ "id INTEGER PRIMARY KEY,"
-				+ "uniqueID string,"
-				+ "lastUpdate date,"
-				+ "id_metadata integer"
+		String str = "create table if not exists asset (" 
+					+ "id INTEGER PRIMARY KEY,"
+					+ "uniqueID string,"
+					+ "lastUpdate date,"
+					+ "id_metadata integer"
 				+ ")";
 		return str;	
 	}

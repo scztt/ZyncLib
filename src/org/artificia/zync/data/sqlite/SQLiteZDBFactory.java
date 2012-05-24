@@ -11,9 +11,9 @@ import org.artificia.zync.Asset;
 import org.artificia.zync.ZDBLogger;
 import org.artificia.zync.data.AssetAccessor;
 import org.artificia.zync.data.AssetRefAccessor;
-import org.artificia.zync.data.FileSystemSettings;
 import org.artificia.zync.data.MetadataAccessor;
 import org.artificia.zync.data.ZDBFactory;
+import org.artificia.zync.fs.FileSystemSettings;
 
 
 public class SQLiteZDBFactory implements ZDBFactory
@@ -23,29 +23,24 @@ public class SQLiteZDBFactory implements ZDBFactory
 	
 	SQLiteZDBFactory()
 	{
-		try
-		{
-			Class.forName("org.sqlite.JDBC");
-		} catch (Exception e) {}
 	}
 	
-	
-	
-	public void connectDatabase()
+	public void setFileSystemSettings(FileSystemSettings inSettings)
 	{
-		try
-		{
-			// create a database connection
-			dbConnection = DriverManager.getConnection("jdbc:sqlite:" + settings.get("LibraryDatabasePath"));
-			Statement statement = dbConnection.createStatement();
-			statement.setQueryTimeout(30);  // set timeout to 30 sec.
+		settings = inSettings;
+	}
+	
+	public void connectDatabase() throws SQLException, ClassNotFoundException
+	{
+	    Class.forName("org.sqlite.JDBC");
 
-			statement.executeUpdate(SqlQueryFactory.Asset_CreateTable());
-		}
-		catch(SQLException e)
-		{
-			ZDBLogger.get().log(Level.SEVERE, "Failed to create database connection.\n" + e.getMessage());
-		}
+	    // create a database connection
+		dbConnection = DriverManager.getConnection("jdbc:sqlite:" + (String)settings.get("LibraryDatabasePath"));
+		
+		Statement statement = dbConnection.createStatement();
+		statement.setQueryTimeout(30);  // set timeout to 30 sec.
+
+		statement.executeUpdate(SqlQueryFactory.Asset_CreateTable());
 	}
 
 	public void disconnectDatabse()
@@ -76,6 +71,11 @@ public class SQLiteZDBFactory implements ZDBFactory
 	public MetadataAccessor GetMetadataAccessor()
 	{
 		return new SQLiteMetadataAccessor(dbConnection);
+	}
+
+	public boolean isConnected()
+	{
+		return dbConnection != null;
 	}
 	
 }

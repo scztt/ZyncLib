@@ -1,6 +1,5 @@
 package org.artificia.zync.fs;
 
-import java.io.File;
 import java.util.Collection;
 
 import org.artificia.zync.AbstractFile;
