@@ -3,7 +3,6 @@ package org.artificia.zync.data.sqlite;
 import java.sql.ResultSet;
 
 import org.artificia.zync.AssetRef;
-import org.artificia.zync.FileSystem;
 import org.artificia.zync.data.QueryIterator;
 /*
 
@@ -60,4 +59,5 @@ public class SQLiteQueryIterator implements QueryIterator
 		}
 	}
 }
-*/
+*/import org.artificia.zync.fs.FileSystem;
+

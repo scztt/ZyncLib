@@ -1,5 +1,6 @@
 package org.artificia.zync.data.sqlite;
 
+import java.sql.Connection;
 import java.util.Vector;
 
 import org.artificia.zync.Asset;
@@ -12,6 +13,11 @@ import org.artificia.zync.data.QueryIterator;
 
 public class SQLiteMetadataAccessor implements MetadataAccessor
 {
+
+	public SQLiteMetadataAccessor(Connection dbConnection)
+	{
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public void applyChange(MetadataDatabaseChange inAssetChange)

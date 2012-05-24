@@ -3,6 +3,8 @@ package org.artificia.zync;
 import java.io.File;
 import java.sql.Time;
 
+import org.artificia.zync.fs.FileSystem;
+
 public class AssetRef {
 	private FileSystem fileSystem;
 	
@@ -12,7 +14,7 @@ public class AssetRef {
 	public int size;
 	public Time lastChanged;
 	
-	AssetRef(FileSystem inFileSystem)
+	public AssetRef(FileSystem inFileSystem)
 	{
 		fileSystem = inFileSystem;
 	}

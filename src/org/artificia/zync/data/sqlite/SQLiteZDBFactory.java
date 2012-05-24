@@ -8,35 +8,35 @@ import java.util.Vector;
 import java.util.logging.Level;
 
 import org.artificia.zync.Asset;
+import org.artificia.zync.ZDBLogger;
 import org.artificia.zync.data.AssetAccessor;
 import org.artificia.zync.data.AssetRefAccessor;
+import org.artificia.zync.data.FileSystemSettings;
 import org.artificia.zync.data.MetadataAccessor;
 import org.artificia.zync.data.ZDBFactory;
 
-/*
+
 public class SQLiteZDBFactory implements ZDBFactory
 {
 	private Connection dbConnection;
 	private FileSystemSettings settings;
 	
-	SQLiteZDBFactory(FileSystemSettings inSettings)
+	SQLiteZDBFactory()
 	{
-		this.settings = settings;
-		
 		try
 		{
 			Class.forName("org.sqlite.JDBC");
 		} catch (Exception e) {}
-
-		connectDatabase();
 	}
+	
+	
 	
 	public void connectDatabase()
 	{
 		try
 		{
 			// create a database connection
-			dbConnection = DriverManager.getConnection("jdbc:sqlite:" + settings.getLibraryDatabasePath());
+			dbConnection = DriverManager.getConnection("jdbc:sqlite:" + settings.get("LibraryDatabasePath"));
 			Statement statement = dbConnection.createStatement();
 			statement.setQueryTimeout(30);  // set timeout to 30 sec.
 
@@ -79,4 +79,4 @@ public class SQLiteZDBFactory implements ZDBFactory
 	}
 	
 }
-*/
+

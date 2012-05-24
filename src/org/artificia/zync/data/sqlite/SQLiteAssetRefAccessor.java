@@ -1,5 +1,6 @@
 package org.artificia.zync.data.sqlite;
 
+import java.sql.Connection;
 import java.util.Vector;
 
 import org.artificia.zync.Asset;
@@ -11,6 +12,11 @@ import org.artificia.zync.data.QueryIterator;
 
 public class SQLiteAssetRefAccessor implements AssetRefAccessor
 {
+
+	public SQLiteAssetRefAccessor(Connection dbConnection)
+	{
+		// TODO Auto-generated constructor stub
+	}
 
 	@Override
 	public void applyChange(AssetDatabaseChange inAssetChange)

@@ -8,7 +8,7 @@ public class Asset {
 	public AssetMetadata metadata;
 	public Date lastUpdate;
 
-	Asset()
+	public Asset()
 	{
 		lastUpdate = new Time(new Date().getTime());
 		//metadata = new AssetMetadata();
