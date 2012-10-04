@@ -41,4 +41,8 @@ public class TestHarness
 		System.out.print("test_LocalFileSystem: " + test_LocalFileSystem());
 	}
 
+	public void nothing()
+	{
+		
+	}
 }

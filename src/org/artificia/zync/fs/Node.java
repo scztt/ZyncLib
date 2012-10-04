@@ -50,18 +50,18 @@ public class Node
 		for (AbstractFile file : files)
 		{
 			Asset newAsset = new Asset();
-			newAsset.uniqueID = generateUniqueAssetID();
+			newAsset.uniqueId = generateUniqueAssetID();
 			
 			AssetDatabaseChange add = new AssetDatabaseChange();
 			add.asset = newAsset;
-			add.assetUniqueID = newAsset.uniqueID;
+			add.assetUniqueID = newAsset.uniqueId;
 			add.date = new Date();
 			add.nodeOriginator = "someNode";
 			add.type = ChangeType.Add;
 //			allAssets.applyChange(add);
 			
 			AssetRef newAssetRef = new AssetRef(this.ownFileSystem);
-			newAssetRef.uniqueID = newAsset.uniqueID;
+			newAssetRef.uniqueId = newAsset.uniqueId;
 			newAssetRef.name = file.getName();
 			//newAssetRef.path = PathUtils.getRelativePath(file.getParentFile().toString(), this.ownFileSystem.getRootPath(), "/");
 			newAssetRef.path = this.ownFileSystem.getRelativePathOfFile(file);
@@ -146,7 +146,7 @@ public class Node
 				{
 					if (missing.size == candidate.size)
 					{
-						candidate.uniqueID = missing.uniqueID;
+						candidate.uniqueId = missing.uniqueId;
 						ownAssets.updateAssetRef(candidate);
 						missingIter.remove();
 						candidateIter.remove();
@@ -154,7 +154,7 @@ public class Node
 					}
 					else 
 					{
-						candidate.uniqueID = missing.uniqueID;
+						candidate.uniqueId = missing.uniqueId;
 						ownAssets.updateAssetRef(candidate);
 						missingIter.remove();
 						candidateIter.remove();
@@ -166,7 +166,7 @@ public class Node
 				{
 					if (missing.size == candidate.size)
 					{
-						candidate.uniqueID = missing.uniqueID;
+						candidate.uniqueId = missing.uniqueId;
 						ownAssets.updateAssetRef(candidate);
 						missingIter.remove();
 						candidateIter.remove();

@@ -2,20 +2,20 @@ package org.artificia.zync.data;
 
 import java.util.Vector;
 
-import org.artificia.zync.Asset;
+import org.artificia.zync.AssetRef;
 import org.artificia.zync.AssetMetadata;
 
 public interface AssetRefAccessor
 {
-	public void applyChange(AssetDatabaseChange inAssetChange);
+	public Boolean applyChange(AssetRefDatabaseChange inAssetChange);
 	
-	public void insertRecord(AssetRef inAsset);
-	public void insertRecords(Vector<AssetRef> inAssets);
+	public Boolean insertRecord(AssetRef inAsset);
+	public Boolean insertRecords(Vector<AssetRef> inAssets);
 	
-	public void updateRecord(AssetRef inAssetRef);
-	public void deleteRecord(AssetRef inAssetRefID);
+	public Boolean updateRecord(AssetRef inAssetRef);
+	public Boolean deleteRecord(AssetRef inAssetRefID);
 	
-	public Asset getById(int inId);
-	public QueryIterator<AssetRef> getAll();
+	public AssetRef getById(int inId);
+	public QueryIterator<AssetRef> getAll() throws AccessException;
 	public QueryIterator<AssetRef> matchUsingMetadata(AssetMetadata inMetadata);
 }

@@ -26,18 +26,50 @@ public class SQLiteAssetAccessor implements AssetAccessor
 {
 	Connection db;
 	
-	private String insertQuery = "insert into asset (uniqueID, lastUpdate, id_metadata, id_creator) VALUES (?, ?, ?, ?)";
+	///////////////////////////////////////////////////////////////////////////
+	// Queries 
+	private String insertQuery = "insert into asset (uniqueId, lastUpdate, id_metadata, id_creator) VALUES (?, ?, ?, ?)";
+	
 	private String updateQuery = "UPDATE asset SET " + "lastUpdate=?, "
-			+ "id_metadata=?, " + "WHERE uniqueID = ?";
+			+ "id_metadata=?, " + "WHERE uniqueId = ?";
+	
 	private String allQuery = "SELECT * FROM asset";
+	
 	private String createQuery = "create table if not exists asset (" 
 			+ "id INTEGER PRIMARY KEY,"
-			+ "uniqueID string,"
+			+ "uniqueId string,"
 			+ "lastUpdate timestamp,"
 			+ "id_metadata integer,"
 			+ "id_creator integer"
 		+ ")";
+	///////////////////////////////////////////////////////////////////////////
 		
+	
+	///////////////////////////////////////////////////////////////////////////
+	// SQLite to Asset 
+	private class SQLiteToAssetConvertor implements QueryIterator.TypeConvertor<ResultSet, Asset>
+	{
+		public Asset convert(ResultSet inResult)
+		{
+			try
+			{
+				// (uniqueId, lastUpdate, id_metadata, id_creator)
+				Asset asset = new Asset();
+				asset.lastUpdate = new Time(inResult.getDate("lastUpdate").getTime());
+				asset.metadata = new AssetMetadata(); // @TODO Get metadata from db....
+				asset.uniqueId = inResult.getString("uniqueId");
+				return asset;
+			}
+			catch (Exception e)
+			{
+				return null;
+			}
+		}		
+	}
+	
+	
+	///////////////////////////////////////////////////////////////////////////
+	// SQLiteAssetAccessor 
 	public SQLiteAssetAccessor(Connection inConnection)
 	{
 		db = inConnection;
@@ -59,27 +91,7 @@ public class SQLiteAssetAccessor implements AssetAccessor
 			e.printStackTrace();
 		}
 	}
-	
-	private class SQLiteToAssetConvertor implements QueryIterator.TypeConvertor<ResultSet, Asset>
-	{
-		public Asset convert(ResultSet inResult)
-		{
-			try
-			{
-				// (uniqueID, lastUpdate, id_metadata, id_creator)
-				Asset asset = new Asset();
-				asset.lastUpdate = new Time(inResult.getDate("lastUpdate").getTime());
-				asset.metadata = null; // @TODO Get metadata from db....
-				asset.uniqueID = inResult.getString("uniqueID");
-				return asset;
-			}
-			catch (Exception e)
-			{
-				return null;
-			}
-		}		
-	}
-	
+
 	@Override
 	public Boolean applyChange(AssetDatabaseChange inAssetChange)
 	{
@@ -97,7 +109,7 @@ public class SQLiteAssetAccessor implements AssetAccessor
 	{
 		try
 		{
-			// (uniqueID, lastUpdate, id_metadata, id_creator)
+			// (uniqueId, lastUpdate, id_metadata, id_creator)
 			PreparedStatement statement = db.prepareStatement(insertQuery);
 			statement.setString(1, inAssetChange.assetUniqueID);
 			statement.setTimestamp(2, new Timestamp(inAssetChange.date.getTime()));
@@ -125,7 +137,7 @@ public class SQLiteAssetAccessor implements AssetAccessor
 	{
 		AssetDatabaseChange change = new AssetDatabaseChange();
 		change.asset = inAsset;
-		change.assetUniqueID = inAsset.uniqueID;
+		change.assetUniqueID = inAsset.uniqueId;
 		change.date = new Date();
 		change.nodeOriginator = Node.getLocalNode().getNodeId();
 		change.type = ChangeType.Add;

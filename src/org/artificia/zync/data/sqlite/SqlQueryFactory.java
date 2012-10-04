@@ -15,7 +15,7 @@ public class SqlQueryFactory {
 	{
 		String str = "create table assetref (" 
 				+ "id INTEGER PRIMARY KEY,"
-				+ "uniqueID string,"
+				+ "uniqueId string,"
 				+ "path string,"
 				+ "name string,"
 				+ "size int,"
@@ -26,7 +26,7 @@ public class SqlQueryFactory {
 
 	public static String AssetRef_Insert()
 	{		
-		return "insert into assetref (uniqueID, path, name, size, lastChanged) VALUES (?, ?, ?, ?, ?)";
+		return "insert into assetref (uniqueId, path, name, size, lastChanged) VALUES (?, ?, ?, ?, ?)";
 	}
 	
 	///////////////////////////////////////////////////////////////
@@ -35,7 +35,7 @@ public class SqlQueryFactory {
 	{
 		String str = "create table if not exists asset (" 
 					+ "id INTEGER PRIMARY KEY,"
-					+ "uniqueID string,"
+					+ "uniqueId string,"
 					+ "lastUpdate date,"
 					+ "id_metadata integer"
 				+ ")";
@@ -44,11 +44,11 @@ public class SqlQueryFactory {
 
 	public static String Asset_Insert(Asset inAsset)
 	{
-//		String str = "insert into asset (uniqueID, lastUpdate, metadata) VALUES ("
-//				+ "'" + inAsset.uniqueID + "',"
+//		String str = "insert into asset (uniqueId, lastUpdate, metadata) VALUES ("
+//				+ "'" + inAsset.uniqueId + "',"
 //				+ "'" + inAsset.lastUpdate + "',"
 //				+ "'" + inAsset.metadata + "')";
-		String str = "insert into asset (uniqueID, lastUpdate, metadata) VALUES (?, ?, ?)";
+		String str = "insert into asset (uniqueId, lastUpdate, metadata) VALUES (?, ?, ?)";
 		return str;
 	}
 	
@@ -59,7 +59,7 @@ public class SqlQueryFactory {
 	}
 
 	public static String AssetRef_QueryByUniqueId(String inUniqueId) {
-		String str = String.format("select * from assetref where uniqueID = '%'", inUniqueId);
+		String str = String.format("select * from assetref where uniqueId = '%'", inUniqueId);
 		return str;
 	}
 
@@ -70,7 +70,7 @@ public class SqlQueryFactory {
 			{
 				inRef.name = result.getString("name");
 				inRef.path = result.getString("path");
-				inRef.uniqueID = result.getString("uniqueID");
+				inRef.uniqueId = result.getString("uniqueId");
 				inRef.size = result.getInt("size");
 				inRef.lastChanged = result.getTime("lastChanged");
 			}
@@ -90,7 +90,7 @@ public class SqlQueryFactory {
 				+ "name=?, "
 				+ "size=?, "
 				+ "lastChanged=? "
-				+ "WHERE uniqueID = '" + inUniqueID + "'";
+				+ "WHERE uniqueId = '" + inUniqueID + "'";
 	}
 
 	public static String AssetRef_All()
