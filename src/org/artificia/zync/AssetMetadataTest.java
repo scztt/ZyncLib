@@ -158,7 +158,29 @@ public class AssetMetadataTest
 	@Test
 	public void testEqualsAssetMetadata()
 	{
-		fail("Not yet implemented"); // TODO
+		try
+		{
+			AssetMetadata md2 = new AssetMetadata();
+			
+			this.md.put("integer", integer);
+			this.md.put("name", name);
+			this.md.put("date", date);
+			this.md.put("float", floatValue);
+	
+			md2.put("integer", integer);
+			md2.put("name", name);
+			md2.put("date", date);
+			md2.put("float", floatValue);
+		}
+		catch (Exception e)
+		{
+			fail(e.toString());
+		}					
 	}
 
+	@Test
+	public void testNotEqualsAssetMetadata()
+	{
+		fail("Not yet implemented"); // TODO
+	}
 }

@@ -43,7 +43,7 @@ public class AssetMetadata
 	public Boolean equals(AssetMetadata inMD)
 	{
 		// @TODO an actual equals method here...
-		return true;
+		return false;
 	}
 
 	public Set<String> keySet()
