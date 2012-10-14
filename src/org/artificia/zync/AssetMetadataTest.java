@@ -27,7 +27,7 @@ public class AssetMetadataTest
 		integer = 1;
 		name = "name";
 		date = new Date();
-		floatValue = 9.0984350f;
+		floatValue = 9.0984350f;		
 	}
 
 	@After
@@ -44,7 +44,22 @@ public class AssetMetadataTest
 	@Test
 	public void testSerialize()
 	{
-		fail("Not yet implemented"); // TODO
+		try
+		{
+			this.md.put("integer", integer);
+			this.md.put("name", name);
+			this.md.put("date", date);
+			this.md.put("float", floatValue);
+			this.md.put("unknown", "unknown");
+	
+			String serialized = this.md.serialize();
+			
+			assertTrue(serialized == "");
+		}
+		catch (Exception e)
+		{
+			fail(e.toString());
+		}
 	}
 
 	@Test
