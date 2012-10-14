@@ -55,7 +55,7 @@ public class AssetMetadataTest
 			this.md.put("name", name);
 			this.md.put("date", date);
 			this.md.put("float", floatValue);
-			this.md.put("unknown", "asdf");
+			this.md.put("unknown", "unknown");
 			
 			Set<String> keys = this.md.getKeys();
 			assertTrue(keys.contains("integer"));
@@ -73,7 +73,25 @@ public class AssetMetadataTest
 	@Test
 	public void testGetValues()
 	{
-		fail("Not yet implemented"); // TODO
+		try
+		{
+			this.md.put("integer", integer);
+			this.md.put("name", name);
+			this.md.put("date", date);
+			this.md.put("float", floatValue);
+			this.md.put("unknown", "unknown");
+			Set<Object> values = this.md.getValues();
+			
+			assertTrue(values.contains(integer));
+			assertTrue(values.contains(name));
+			assertTrue(values.contains(date));
+			assertTrue(values.contains(floatValue));
+			assertTrue(values.contains("unknown"));			
+		}
+		catch (Exception e)
+		{
+			fail(e.toString());
+		}
 	}
 	
 	@Test

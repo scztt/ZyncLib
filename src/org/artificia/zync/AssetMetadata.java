@@ -31,7 +31,7 @@ public class AssetMetadata
 	
 	public Set<String> getKeys()
 	{
-		return null;
+		return map.keySet();
 	}
 	
 	public Set<Object> getValues()
