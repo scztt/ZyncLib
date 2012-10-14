@@ -13,9 +13,9 @@ public class MetadataSpec
 		// @TODO get rid of this
 		dataTypes = new HashMap<String, Class>();
 		dataTypes.put("name", String.class);
-		dataTypes.put("integer", int.class);
+		dataTypes.put("integer", Integer.class);
 		dataTypes.put("date", Date.class);
-		dataTypes.put("float", float.class);
+		dataTypes.put("float", Number.class);
 	}
 
 	public Class getTypeForKey(String key)

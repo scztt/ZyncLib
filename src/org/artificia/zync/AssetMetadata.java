@@ -29,6 +29,11 @@ public class AssetMetadata
 		return null;
 	}
 	
+	public Set<String> getKeys()
+	{
+		return null;
+	}
+	
 	public Set<Object> getValues()
 	{
 		return null;		
@@ -50,10 +55,20 @@ public class AssetMetadata
 		Class<?> expectedType = spec.getTypeForKey(key);
 		try
 		{
-			map.put(key, expectedType.getClass().cast(value));
+			// @TODO Need an extra layer of type conversion to handle sibling-like types like Float and Double. Right now, just use Number in the spec for those....  
+			if (expectedType == null)
+			{
+				map.put(key, value);
+				ZDBLogger.get().warning("Key '" + key + "' is not part of metadata spec! This may cause problems later.");
+			}
+			else
+			{
+				map.put(key, expectedType.cast(value));
+			}
 		}
 		catch (ClassCastException e)
 		{
+			ZDBLogger.get().warning("Value provided for key '" + key + "' not of expected type '" + expectedType.toString() + "'");
 			throw e;
 		}
 	}

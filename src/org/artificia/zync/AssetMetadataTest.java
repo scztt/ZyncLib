@@ -13,11 +13,20 @@ import org.junit.Test;
 public class AssetMetadataTest
 {
 	AssetMetadata md;
+	Integer integer;
+	String name;
+	Date date;
+	Float floatValue;
 	
 	@Before
 	public void setUp() throws Exception
 	{
 		this.md = new AssetMetadata();
+
+		integer = 1;
+		name = "name";
+		date = new Date();
+		floatValue = 9.0984350f;
 	}
 
 	@After
@@ -42,26 +51,23 @@ public class AssetMetadataTest
 	{
 		try
 		{
-			this.md.put("integer", 1);
-			this.md.put("string", "string");
-			this.md.put("date", new Date());
-			this.md.put("float", 9.0984350);
-
-			assertTrue(this.md.keySet().size() == 4);
-
-			int test = this.md.get("test");
-			assertTrue(test == 1);
-			String foo = this.md.get("foo");
-			Date bar = this.md.get("bar");
-			float random = this.md.get("LKJHGSKDJHFLIUWER)*(#$&$#FOH"); 
+			this.md.put("integer", integer);
+			this.md.put("name", name);
+			this.md.put("date", date);
+			this.md.put("float", floatValue);
+			this.md.put("unknown", "asdf");
 			
-			
+			Set<String> keys = this.md.getKeys();
+			assertTrue(keys.contains("integer"));
+			assertTrue(keys.contains("name"));
+			assertTrue(keys.contains("date"));
+			assertTrue(keys.contains("float"));
+			assertTrue(keys.contains("unknown"));
 		}
 		catch (Exception e)
 		{
 			fail(e.toString());
 		}
-
 	}
 
 	@Test
@@ -69,7 +75,67 @@ public class AssetMetadataTest
 	{
 		fail("Not yet implemented"); // TODO
 	}
+	
+	@Test
+	public void testGetPut()
+	{
+		try
+		{
+			this.md.put("integer", integer);
+			this.md.put("name", name);
+			this.md.put("date", date);
+			this.md.put("float", floatValue);
 
+			assertTrue(this.md.keySet().size() == 4);
+
+			Integer resultInt = this.md.get("integer");
+			assertTrue(resultInt == integer);
+			
+			String resultString = this.md.get("name");
+			assertTrue(resultString == name);
+			
+			Date resultDate = this.md.get("date");
+			assertTrue(resultDate == date);
+			
+			Float resultFloat = this.md.get("float");
+			assertTrue(resultFloat == floatValue);
+		}
+		catch (Exception e)
+		{
+			fail(e.toString());
+		}	
+	}
+	
+	@Test
+	public void testGetPutUnknown()
+	{
+		try
+		{
+			this.md.put("unknownInt", integer);
+			this.md.put("unknownString", name);
+			this.md.put("unknownDate", date);
+			this.md.put("unknownFloat", floatValue);
+
+			assertTrue(this.md.keySet().size() == 4);
+
+			Integer resultInt = this.md.get("unknownInt");
+			assertTrue(resultInt == integer);
+			
+			String resultString = this.md.get("unknownString");
+			assertTrue(resultString == name);
+			
+			Date resultDate = this.md.get("unknownDate");
+			assertTrue(resultDate == date);
+			
+			Float resultFloat = this.md.get("unknownFloat");
+			assertTrue(resultFloat == floatValue);
+		}
+		catch (Exception e)
+		{
+			fail(e.toString());
+		}	
+	}
+	
 	@Test
 	public void testEqualsAssetMetadata()
 	{
