@@ -42,8 +42,19 @@ public class AssetMetadata
 	
 	public Boolean equals(AssetMetadata inMD)
 	{
-		// @TODO an actual equals method here...
-		return false;
+		Set<String> thisKeys = this.getKeys();
+		Set<String> thatKeys = inMD.getKeys();
+		
+		if(thisKeys == thatKeys)
+			return false;
+		
+		for(String key : thisKeys)
+		{
+			if (this.get(key) != inMD.get(key))
+				return false;
+		}
+		
+		return true;
 	}
 
 	public Set<String> keySet()

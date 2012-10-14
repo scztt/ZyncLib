@@ -166,11 +166,16 @@ public class AssetMetadataTest
 			this.md.put("name", name);
 			this.md.put("date", date);
 			this.md.put("float", floatValue);
+			this.md.put("unknown", "asdf");
 	
 			md2.put("integer", integer);
 			md2.put("name", name);
 			md2.put("date", date);
 			md2.put("float", floatValue);
+			md2.put("unknown", "asdf");
+			
+			assertTrue(md2.equals(md));
+			assertTrue(md.equals(md2));
 		}
 		catch (Exception e)
 		{
@@ -181,6 +186,28 @@ public class AssetMetadataTest
 	@Test
 	public void testNotEqualsAssetMetadata()
 	{
-		fail("Not yet implemented"); // TODO
+		try
+		{
+			AssetMetadata md2 = new AssetMetadata();
+			
+			this.md.put("integer", integer);
+			this.md.put("name", name);
+			this.md.put("date", date);
+			this.md.put("float", floatValue);
+			this.md.put("unknown", "asdf");
+	
+			md2.put("notinteger", integer);
+			md2.put("name", "notname");
+			md2.put("date", date);
+			md2.put("float", floatValue);
+			md2.put("unknown", "asdf");
+			
+			assertFalse(md2.equals(md));
+			assertFalse(md.equals(md2));
+		}
+		catch (Exception e)
+		{
+			fail(e.toString());
+		}
 	}
 }
