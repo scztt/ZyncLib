@@ -2,6 +2,7 @@ package org.artificia.zync;
 
 import static org.junit.Assert.*;
 
+import java.util.Collection;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
@@ -80,7 +81,7 @@ public class AssetMetadataTest
 			this.md.put("date", date);
 			this.md.put("float", floatValue);
 			this.md.put("unknown", "unknown");
-			Set<Object> values = this.md.getValues();
+			Collection<Object> values = this.md.getValues();
 			
 			assertTrue(values.contains(integer));
 			assertTrue(values.contains(name));

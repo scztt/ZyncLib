@@ -1,5 +1,6 @@
 package org.artificia.zync;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,9 +35,9 @@ public class AssetMetadata
 		return map.keySet();
 	}
 	
-	public Set<Object> getValues()
+	public Collection<Object> getValues()
 	{
-		return null;		
+		return map.values();		
 	}
 	
 	public Boolean equals(AssetMetadata inMD)
